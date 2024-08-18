@@ -9,7 +9,8 @@
   "scripts": {
     "start-server": "npm run start --prefix server",
     "build-server": "npm run build --prefix server",
-    "postinstall": "npm run build-server"
+    "install-server": "cd server && npm install && cd ..",
+    "postinstall": "npm run install-server && npm run build-server"
   },
   "dependencies": {
   },
