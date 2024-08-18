@@ -10,10 +10,11 @@
   "scripts": {
     "start": "tsx watch src/index.ts",
     "loadtest": "tsx loadtest/example.ts --room my_room --numClients 2",
-    "build": "npm run clean && tsc && npm run copy-procfile",
+    "build": "npm run clean && tsc && npm run copy-procfile && npm run copy-package",
     "clean": "rimraf build",
     "test": "mocha -r tsx test/**_test.ts --exit --timeout 15000",
     "copy-procfile": "cpy Procfile build",
+    "copy-package": "cpy package.template build --rename package.json",
     "heroku-postbuild": "npm run build"
   },
   "author": "",
