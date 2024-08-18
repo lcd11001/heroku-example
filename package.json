@@ -13,7 +13,8 @@
     "build": "npm run clean && tsc",
     "clean": "rimraf build",
     "test": "mocha -r tsx test/**_test.ts --exit --timeout 15000",
-    "heroku-postbuild": "npm run build"
+    "create-procfile": "echo web: node index.js> build/Procfile",
+    "heroku-postbuild": "npm run build && npm run create-procfile"
   },
   "author": "",
   "license": "UNLICENSED",
