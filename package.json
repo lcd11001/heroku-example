@@ -10,11 +10,11 @@
   "scripts": {
     "start": "tsx watch src/index.ts",
     "loadtest": "tsx loadtest/example.ts --room my_room --numClients 2",
-    "build": "npm run clean && tsc",
+    "build": "npm run clean && tsc && npm run create-procfile",
     "clean": "rimraf build",
     "test": "mocha -r tsx test/**_test.ts --exit --timeout 15000",
     "create-procfile": "echo web: node index.js> build/Procfile",
-    "heroku-postbuild": "npm run build && npm run create-procfile"
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "UNLICENSED",
