@@ -9,7 +9,7 @@
   "scripts": {
     "start-server": "npm run start --prefix server",
     "build-server": "npm run build --prefix server",
-    "install-server": "cd server && npm install && cd ..",
+    "install-server": "cd server && npm install",
     "heroku-postbuild": "npm run install-server"
   },
   "dependencies": {
