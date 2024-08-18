@@ -11,6 +11,7 @@ heroku create your-app-name
 ### Set the buildpack:
 ```
 heroku buildpacks:set https://github.com/timanovsky/subdir-heroku-buildpack
+heroku buildpacks:add heroku/nodejs
 ```
 
 ### Specify the subdirectory: 
