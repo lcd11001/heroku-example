@@ -34,6 +34,16 @@ or
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+## Example
+```
+heroku apps:create lcdsoft-example --region us
+```
+Creating ⬢ lcdsoft-example... done, region is us
+
+[https://lcdsoft-example-daef16c8c2d3.herokuapp.com/](https://lcdsoft-example-daef16c8c2d3.herokuapp.com/)
+
+[https://git.heroku.com/lcdsoft-example.git](https://git.heroku.com/lcdsoft-example.git)
+
 ## Documentation
 
 For more information about using Node.js on Heroku, see these Dev Center articles:
