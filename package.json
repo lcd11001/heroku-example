@@ -7,22 +7,21 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "node test.js"
+    "start-server": "npm run start --prefix server",
+    "build-server": "npm run build --prefix server",
+    "postinstall": "npm run build-server"
   },
   "dependencies": {
-    "ejs": "^3.1.9",
-    "express": "^4.15.2"
   },
   "devDependencies": {
-    "tape": "^5.7.4"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/lcd11001/heroku-example"
   },
   "keywords": [
     "node",
+    "colyseus",
     "heroku",
     "express"
   ],
