@@ -24,6 +24,7 @@ heroku buildpacks:add heroku/nodejs
 Create a .buildpacks file in the root of your project and specify the build directory.
 ```
 echo "build" > .buildpacks
+heroku config:set PROJECT_PATH=build
 ```
 
 ### Check your current branch name:

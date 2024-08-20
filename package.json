@@ -13,12 +13,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run copy-procfile && npm run copy-package",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "copy-procfile": "cpy Procfile build",
     "copy-package": "cpy package.template build --rename package.json",
-    "heroku-postbuild": "npm run build && npm run copy-procfile && npm run copy-package"
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": [
