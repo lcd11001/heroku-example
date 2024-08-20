@@ -1,0 +1,14 @@
+{
+  "name": "heroku",
+  "version": "1.0.0",
+  "main": "index.js",
+  "engines": {
+    "node": ">= 16.13.0"
+  },
+  "scripts": {
+    "start": "serve -s build"
+  },
+  "dependencies": {
+    "serve": "^14.2.3"
+  }
+}

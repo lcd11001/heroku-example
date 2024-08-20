@@ -15,7 +15,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "copy-procfile": "cpy Procfile build",
+    "copy-package": "cpy package.template build --rename package.json",
+    "heroku-postbuild": "npm run build && npm run copy-procfile && npm run copy-package"
   },
   "eslintConfig": {
     "extends": [

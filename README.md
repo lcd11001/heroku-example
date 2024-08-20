@@ -1,3 +1,5 @@
+## [How to Deploy a React app to Heroku](https://dev.to/mrcflorian/how-to-deploy-a-react-app-to-heroku-44ig)
+
 ### Login
 ```
 heroku login
@@ -10,17 +12,6 @@ heroku create your-app-name
 or add to existing Heroku app
 ```
 heroku git:remote -a your-heroku-app-name
-```
-
-### Set the buildpack:
-```
-heroku buildpacks:set https://github.com/heroku/heroku-buildpack-static
-```
-
-### Specify the subdirectory: 
-Create a .buildpacks file in the root of your project and specify the build directory.
-```
-echo "build" > .buildpacks
 ```
 
 ### Check your current branch name:
