@@ -14,6 +14,18 @@ or add to existing Heroku app
 heroku git:remote -a your-heroku-app-name
 ```
 
+### Set the buildpack:
+```
+heroku buildpacks:set https://github.com/timanovsky/subdir-heroku-buildpack
+heroku buildpacks:add heroku/nodejs
+```
+
+### Specify the subdirectory: 
+Create a .buildpacks file in the root of your project and specify the build directory.
+```
+echo "build" > .buildpacks
+```
+
 ### Check your current branch name:
 ```
 git branch
