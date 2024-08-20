@@ -10,12 +10,14 @@ const playground_1 = require("@colyseus/playground");
  * Import your Room files
  */
 const MyRoom_1 = require("./rooms/MyRoom");
+const TicTacToe_1 = require("./rooms/TicTacToe");
 exports.default = (0, tools_1.default)({
     initializeGameServer: (gameServer) => {
         /**
          * Define your room handlers:
          */
         gameServer.define('my_room', MyRoom_1.MyRoom);
+        gameServer.define('tic_tac_toe', TicTacToe_1.TicTacToeRoom);
     },
     initializeExpress: (app) => {
         /**
