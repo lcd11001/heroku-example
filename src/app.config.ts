@@ -10,7 +10,8 @@ import { TicTacToeRoom } from "./rooms/TicTacToe";
 
 export default config({
 
-    initializeGameServer: (gameServer) => {
+    initializeGameServer: (gameServer) =>
+    {
         /**
          * Define your room handlers:
          */
@@ -18,12 +19,14 @@ export default config({
         gameServer.define('tic_tac_toe', TicTacToeRoom);
     },
 
-    initializeExpress: (app) => {
+    initializeExpress: (app) =>
+    {
         /**
          * Bind your custom express routes here:
          * Read more: https://expressjs.com/en/starter/basic-routing.html
          */
-        app.get("/hello_world", (req, res) => {
+        app.get("/hello_world", (req, res) =>
+        {
             res.send("It's time to kick ass and chew bubblegum!");
         });
 
@@ -31,7 +34,8 @@ export default config({
          * Use @colyseus/playground
          * (It is not recommended to expose this route in a production environment)
          */
-        if (process.env.NODE_ENV !== "production") {
+        if (process.env.NODE_ENV !== "production")
+        {
             app.use("/", playground);
         }
 
@@ -44,7 +48,8 @@ export default config({
     },
 
 
-    beforeListen: () => {
+    beforeListen: () =>
+    {
         /**
          * Before before gameServer.listen() is called.
          */

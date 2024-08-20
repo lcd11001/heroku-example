@@ -1,14 +1,16 @@
 import { Schema, type, ArraySchema } from "@colyseus/schema";
 
-export class TicTacToeState extends Schema {
-  @type(["string"])
-  board: ArraySchema<string> = new ArraySchema<string>("", "", "", "", "", "", "", "", "");
+export class TicTacToeState extends Schema
+{
+    @type(["string"])
+    board: ArraySchema<string> = new ArraySchema<string>("", "", "", "", "", "", "", "", "");
 
-  @type("string")
-  currentPlayer: string = "X";
+    @type("string")
+    currentPlayer: string = "";
 
-  reset() {
-    this.board.fill("");
-    this.currentPlayer = "X";
-  }
+    reset()
+    {
+        this.board.fill("");
+        this.currentPlayer = "X";
+    }
 }
