@@ -9,7 +9,8 @@
 /coverage
 
 # production
-/build
+# Do not ignore dist folder, it is needed for Heroku
+#/build
 
 # misc
 .DS_Store
