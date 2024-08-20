@@ -79,6 +79,7 @@ const TicTacToe = () =>
 
     const handleRestart = () =>
     {
+        setStatus("Waiting for opponent...");
         room.send("restart");
     }
 
