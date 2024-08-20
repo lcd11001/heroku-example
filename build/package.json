@@ -6,9 +6,12 @@
     "node": ">= 16.13.0"
   },
   "scripts": {
-    "start": "serve -s build"
+    "start": "serve -s ."
   },
   "dependencies": {
     "serve": "^14.2.3"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
