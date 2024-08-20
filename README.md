@@ -18,9 +18,10 @@ heroku git:remote -a your-heroku-app-name
 ```
 git branch
 ```
+in my case, it named "tick-tac-toe"
 
 ### Deploy
 ```
-git push heroku <branch-name>
+git push heroku tick-tac-toe:main
 heroku ps:scale web=1
 ```
