@@ -9,9 +9,9 @@ const setAuthenToken = (token) =>
     client.auth.token = token;
 }
 
-const joinOrCreateRoom = async (roomName, options) =>
+const joinOrCreateRoom = async (roomName, options, rootSchema) =>
 {
-    return await client.joinOrCreate(roomName, options);
+    return await client.joinOrCreate(roomName, options, rootSchema);
 }
 
 export
