@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Board from "./components/Board";
-import { joinOrCreateRoom } from "./api";
+import { joinOrCreateRoom, setAuthenToken } from "./api";
+import { UserContext } from "./context/UserContext";
 
 const TicTacToe = () =>
 {
+    const { userId } = React.useContext(UserContext);
     const [room, setRoom] = useState(null);
     const [board, setBoard] = useState(Array(9).fill(null));
     const [playerSymbol, setPlayerSymbol] = useState(null);
@@ -14,49 +16,57 @@ const TicTacToe = () =>
     {
         const init = async () =>
         {
-            const room = await joinOrCreateRoom("tic_tac_toe", { name: "Player " + Math.floor(Math.random() * 1000) });
-            setRoom(room);
+            const _room = await joinOrCreateRoom("tic_tac_toe");
+            setRoom(_room);
 
-            room.onStateChange((state) =>
+            _room.onStateChange((state) =>
             {
-                console.log("New state:", state);
                 setBoard(state.board);
                 setCurrentPlayer(state.currentPlayer);
-                if (state.currentPlayer === playerSymbol)
-                {
-                    setStatus("Your turn.");
-                }
+                setStatus(state.winner
+                    ? `Winner: ${state.winner}`
+                    : `Current player: ${state.currentPlayer}`
+                );
             });
 
-            room.onMessage("winner", (message) =>
+            _room.onMessage("winner", (message) =>
             {
                 const { winner, line, player } = message;
                 setStatus(`Winner: ${winner}`);
             });
 
-            room.onMessage("draw", () =>
+            _room.onMessage("draw", () =>
             {
                 setStatus("Draw!");
             });
 
-            room.onMessage("symbol", (symbol) =>
+            _room.onMessage("symbol", (symbol) =>
             {
                 setPlayerSymbol(symbol);
             });
 
-            room.onMessage("opponent-left", () =>
+            _room.onMessage("opponent-left", () =>
             {
                 setStatus("Opponent left the game.");
             });
 
-            room.onMessage("start", (symbol) =>
+            _room.onMessage("start", (symbol) =>
             {
                 setStatus(`Current player: ${symbol}`);
             });
         };
 
-        init();
-    }, []);
+        if (userId?.length > 0)
+        {
+            console.log("User ID", userId);
+            setAuthenToken(userId);
+            init();
+        }
+        else
+        {
+            console.log("User ID not available.");
+        }
+    }, [userId]);
 
     const handleClick = (index) =>
     {
@@ -65,6 +75,11 @@ const TicTacToe = () =>
             room.send("move", index);
         }
     };
+
+    if (!userId)
+    {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div>
