@@ -36,6 +36,9 @@ class TicTacToeRoom extends core_1.Room {
             }
         });
         this.onMessage("restart", (client, _) => {
+            if (this.clients.length !== 2) {
+                return;
+            }
             this.state.reset();
             this.broadcast("start", this.state.currentPlayer);
         });

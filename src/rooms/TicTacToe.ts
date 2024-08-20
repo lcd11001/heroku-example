@@ -48,6 +48,10 @@ export class TicTacToeRoom extends Room<TicTacToeState>
 
         this.onMessage("restart", (client, _) =>
         {
+            if (this.clients.length !== 2)
+            {
+                return;
+            }
             this.state.reset();
             this.broadcast("start", this.state.currentPlayer);
         });
