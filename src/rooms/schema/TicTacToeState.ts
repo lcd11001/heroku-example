@@ -10,7 +10,14 @@ export class TicTacToeState extends Schema
 
     reset()
     {
-        this.board.fill("");
-        this.currentPlayer = "X";
+        this.resetBoard();
+        this.currentPlayer = Math.random() > 0.5 ? "X" : "O";
+    }
+
+    resetBoard()
+    {
+        // Colyseus Schema isn't implemented fill() method yet
+        //this.board = this.board.fill("");
+        this.board = new ArraySchema<string>("", "", "", "", "", "", "", "", "");
     }
 }

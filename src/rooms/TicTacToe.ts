@@ -1,10 +1,28 @@
-import { Room, Client } from "@colyseus/core";
+import { Room, Client, ClientArray } from "@colyseus/core";
 import { TicTacToeState } from "./schema/TicTacToeState";
+import { IncomingMessage } from "http";
 
 export class TicTacToeRoom extends Room<TicTacToeState>
 {
     maxClients = 2;
     playerSymbols: Map<string, string> = new Map();
+
+    static async onAuth(token: string, req: IncomingMessage): Promise<boolean>
+    {
+        return await TicTacToeRoom.verify(token);
+    }
+
+    static async verify(token: string): Promise<boolean>
+    {
+        //const response = await fetch(`https://my-auth-provider.com/verify?token=${token}`);
+        //const data = await response.json();
+        if (token === null || token === undefined || token.trim() === "")
+        {
+            return false;
+        }
+        console.log("verified token", token);
+        return true;
+    }
 
     onCreate(options: any)
     {
@@ -27,6 +45,12 @@ export class TicTacToeRoom extends Room<TicTacToeState>
                 this.checkWinner(client.sessionId);
             }
         });
+
+        this.onMessage("restart", (client, _) =>
+        {
+            this.state.reset();
+            this.broadcast("start", this.state.currentPlayer);
+        });
     }
 
     onJoin(client: Client, options: any)
@@ -39,13 +63,13 @@ export class TicTacToeRoom extends Room<TicTacToeState>
         {
             this.playerSymbols.set(client.sessionId, "O");
         }
-        console.log(client.sessionId, "joined! with symbol", this.playerSymbols.get(client.sessionId));
+        console.log(client.sessionId, "joined! with simple", this.playerSymbols.get(client.sessionId));
 
         // send the player symbol
         client.send("symbol", this.playerSymbols.get(client.sessionId));
         if (this.clients.length === 2)
         {
-            this.state.currentPlayer = Math.random() > 0.5 ? "X" : "O";
+            this.state.reset();
             this.broadcast("start", this.state.currentPlayer);
         }
     }
@@ -83,20 +107,20 @@ export class TicTacToeRoom extends Room<TicTacToeState>
             const [a, b, c] = combination;
             if (this.state.board[a] && this.state.board[a] === this.state.board[b] && this.state.board[a] === this.state.board[c])
             {
-                this.broadcast("winner", {
+                this.broadcast("gameover", {
                     winner: this.state.board[a],
                     line: combination,
                     player: id
                 });
-                this.state.reset();
                 return;
             }
         }
 
         if (this.state.board.filter(cell => cell === "").length === 0)
         {
-            this.broadcast("draw");
-            this.state.reset();
+            this.broadcast("gameover", { winner: 'draw' });
         }
     }
 }
+
+
