@@ -16,3 +16,27 @@
 .App-link {
   color: #61dafb;
 }
+
+.board-row {
+  display: flex;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border: 1px solid #999;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+}
+
+.square:focus {
+  background: #ddd;
+}
+
+.status {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
